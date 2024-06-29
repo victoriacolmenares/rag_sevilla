@@ -31,6 +31,7 @@ def main():
     ]
     docs = load_documents(documents_path)
     splits = split_text(docs)
+    create_chroma(splits)
 
 
 def load_documents(documents_path):
@@ -49,6 +50,19 @@ def split_text(docs: List[Document]):
     splits = text_splitter.split_documents(docs)
     print("Splitted documents.")
     return splits
+
+
+def create_chroma(splits: List[Document]):
+    print("Creating Chroma database...")
+    if os.path.exists(CHROMA_PATH):
+        shutil.rmtree(CHROMA_PATH)
+
+    Chroma.from_documents(
+        documents=splits,
+        embedding=OpenAIEmbeddings(),
+        persist_directory=CHROMA_PATH,
+    )
+    print(f"Saved {len(splits)} documents to {CHROMA_PATH}.")
 
 
 if __name__ == "__main__":
