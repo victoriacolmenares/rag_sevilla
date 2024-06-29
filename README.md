@@ -2,7 +2,7 @@
 
 Este proyecto implementa un asistente de inteligencia artificial (IA) diseñado para ayudar a turistas en Sevilla. Utilizando tecnologías de procesamiento de lenguaje natural y recuperación de información (RAG), el asistente proporciona respuestas útiles y relevantes sobre actividades, información turística y gastronomía en Sevilla.
 
-![alt text](image.png)
+![APP](images/rag_sevilla.png)
 
 ## Características
 
