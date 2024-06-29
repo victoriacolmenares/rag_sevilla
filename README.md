@@ -5,8 +5,14 @@ Este proyecto implementa un asistente de inteligencia artificial (IA) diseñado 
 ## Capturas de Pantalla
 
 ![Hoteles en Sevilla](images/hoteles_sevilla.png)
+
+##
 ![Clima en Sevilla](images/clima_sevilla.png)
+
+##
 ![2 días en Sevilla](images/2dias_sevilla.png)
+
+##
 ![Que comer en Sevilla](images/comer_sevilla.png)
 
 
