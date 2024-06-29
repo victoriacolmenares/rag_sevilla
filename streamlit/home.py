@@ -98,7 +98,10 @@ def main():
 
 def create_rag_chain():
     db = Chroma(persist_directory=CHROMA_PATH, embedding_function=OpenAIEmbeddings())
-    llm = ChatOpenAI(model='gpt-4o', temperature=0.4)
+    llm = ChatOpenAI(
+        model='ft:gpt-3.5-turbo-1106:personal::9fRRutz3',
+        temperature=0.7,
+    )
     retriever = db.as_retriever()
     prompt = PromptTemplate.from_template(TEMPLATE)
     rag_chain = (
