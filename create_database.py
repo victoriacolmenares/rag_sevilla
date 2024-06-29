@@ -30,6 +30,7 @@ def main():
         if file.endswith(".pdf")
     ]
     docs = load_documents(documents_path)
+    splits = split_text(docs)
 
 
 def load_documents(documents_path):
@@ -41,6 +42,13 @@ def load_documents(documents_path):
         print(f"Loaded {len(loader.load_and_split())} pages from {path}")
 
     return pages
+
+
+def split_text(docs: List[Document]):
+    text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=200)
+    splits = text_splitter.split_documents(docs)
+    print("Splitted documents.")
+    return splits
 
 
 if __name__ == "__main__":
