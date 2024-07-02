@@ -16,7 +16,6 @@ pypdf2 = "*"
 gradio = "*"
 chromadb = "*"
 tiktoken = "*"
-unstructured = {extras = ["pdf"], version = "*"}
 
 [dev-packages]
 ipykernel = "*"
