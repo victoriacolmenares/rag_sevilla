@@ -1,6 +1,7 @@
 import os
 import sys
 import streamlit as st
+import streamlit.components.v1 as components
 import time
 from io import BytesIO
 from langchain.chains import create_retrieval_chain
@@ -20,12 +21,13 @@ from pathlib import Path
 root_dir = Path(__file__).resolve().parent.parent
 sys.path.append(str(root_dir))
 from database.sqlite.database import (  # noqa: E402
-    initdb,
-    insert_chat,
-    update_chat_name,
-    save_chat_history,
+    delete_chat_by_id,
     get_all_chat,
     get_chat_history_by_chat_id,
+    initdb,
+    insert_chat,
+    save_chat_history,
+    update_chat_name,
 )
 
 
@@ -135,17 +137,32 @@ def handle_sidebar():
             )
             st.session_state.audio2text = transcription
 
-        if st.button("Crear un nuevo chat"):
-            st.session_state.chat_history_st = []
-            st.session_state.chat_history_llm = []
-            st.session_state.audio2text = ""
-            st.session_state.user_question = ""
+        if st.button("🆕 Crear un nuevo chat"):
+            reset_values()
             st.session_state.chat_id = insert_chat()
 
-    for chat in get_all_chat():
-        if st.sidebar.button(chat[1], key=chat[0]):
-            st.session_state.chat_id = chat[0]
-            load_chat_history(chat[0])
+        for chat in get_all_chat():
+            if st.sidebar.button(chat[1], key=chat[0]):
+                st.session_state.chat_id = chat[0]
+                load_chat_history(chat[0])
+                st.session_state.audio2text = ""
+                st.session_state.user_question = ""
+
+        components.html("""<hr style="height:1px;background-color:#a1a1a1;" /> """)
+        if st.button("🗑️ Borrar chat") and st.session_state.chat_id:
+            delete_chat_by_id(st.session_state.chat_id)
+            st.session_state.chat_id = None
+            reset_values()
+            st.success('¡Chat eliminao tio!', icon="✅")
+            time.sleep(2)
+            st.rerun()
+
+
+def reset_values():
+    st.session_state.chat_history_st = []
+    st.session_state.chat_history_llm = []
+    st.session_state.audio2text = ""
+    st.session_state.user_question = ""
 
 
 def load_chat_history(chat_id):
