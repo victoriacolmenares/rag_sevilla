@@ -8,8 +8,8 @@ from langchain_text_splitters import RecursiveCharacterTextSplitter
 from typing import List
 
 
-CHROMA_PATH = "chroma"
-DATA_PATH = "data"
+CHROMA_PATH = "./database/chroma"
+DOCS_PATH = "./docs"
 
 
 def main():
@@ -25,8 +25,8 @@ def main():
         None
     """
     documents_path = [
-        f"{DATA_PATH}/{file}"
-        for file in os.listdir(DATA_PATH)
+        f"{DOCS_PATH}/{file}"
+        for file in os.listdir(DOCS_PATH)
         if file.endswith(".pdf")
     ]
     docs = load_documents(documents_path)

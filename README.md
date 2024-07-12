@@ -50,7 +50,7 @@ Asegúrate de configurar las variables de entorno necesarias, como las claves de
 
 3. **Ejecuta la Aplicación**:
     ```bash
-    python create_database.py
+    python database/create_database.py
     streamlit run streamlit/home.py
     ```
 
