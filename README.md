@@ -1,19 +1,23 @@
 # Asistente de IA para Turistas en Sevilla (Fine tunning + RAG)
 
-Este proyecto implementa un asistente de inteligencia artificial (IA) diseñado para ayudar a turistas en Sevilla. Aprovechando tecnologías avanzadas de procesamiento de lenguaje natural y recuperación de información (RAG), este asistente proporciona respuestas útiles y altamente relevantes sobre actividades, información turística y opciones gastronómicas en Sevilla. Un aspecto distintivo de nuestro asistente es su capacidad para entender y generar respuestas con un toque local auténtico, gracias a un proceso de fine-tuning del modelo GPT-3.5 utilizando un dataset único basado en videos de YouTube de una hablante nativa andaluza.
+Este proyecto implementa un asistente de inteligencia artificial (IA) diseñado para ayudar a turistas en Sevilla. Aprovechando tecnologías avanzadas de procesamiento de lenguaje natural y recuperación de información (RAG), este asistente proporciona respuestas útiles sobre actividades, información turística y opciones gastronómicas en Sevilla. Un aspecto distintivo de nuestro asistente es su capacidad para entender y generar respuestas con un toque local auténtico, gracias a un proceso de fine-tuning del modelo GPT-3.5 utilizando un dataset único basado en videos de YouTube de una hablante nativa andaluza.
 
-## Capturas de Pantalla
-
-![Hoteles en Sevilla](images/hoteles_sevilla.png)
+## Capturas de Pantalla para QA app
 
 ##
-![Clima en Sevilla](images/clima_sevilla.png)
+![Clima en Sevilla](images/verano_sevilla.png)
 
 ##
-![2 días en Sevilla](images/2dias_sevilla.png)
+![2 días en Sevilla](images/que_hacer_en_sevilla.png)
+
+## Capturas de Pantalla para Chatbot app
 
 ##
-![Que comer en Sevilla](images/comer_sevilla.png)
+![Clima en Sevilla](images/verano_sevilla.png)
+
+##
+![2 días en Sevilla](images/que_hacer_en_sevilla.png)
+
 
 
 ## Características
@@ -50,7 +54,7 @@ Asegúrate de configurar las variables de entorno necesarias, como las claves de
 
 3. **Ejecuta la Aplicación**:
     ```bash
-    python create_database.py
+    python database/create_database.py
     streamlit run streamlit/home.py
     ```
 
