@@ -10,6 +10,8 @@ def connect_db():
 
 def initdb():
     conn, cursor = connect_db()
+    # Habilitar soporte para claves foráneas en SQLite
+    cursor.execute('PRAGMA foreign_keys = ON')
 
     cursor.execute('''
     CREATE TABLE IF NOT EXISTS chat (
@@ -25,7 +27,7 @@ def initdb():
         llm_response TEXT,
         history TEXT,
         chat_id INTEGER,
-        FOREIGN KEY (chat_id) REFERENCES chat (id)
+        FOREIGN KEY (chat_id) REFERENCES chat (id) ON DELETE CASCADE
     )
     ''')
     conn.commit()
@@ -48,11 +50,21 @@ def update_chat_name(chat_id, chat_name):
     conn.commit()
 
 
+def get_all_chat():
+    _, cursor = connect_db()
+    cursor.execute('SELECT * FROM chat ORDER BY id DESC')
+    return cursor.fetchall()
+
+
+def delete_chat_by_id(chat_id):
+    conn, c = connect_db()
+    c.execute('DELETE FROM chat WHERE id = ?', (chat_id,))
+    conn.commit()
+    conn.close()
+
+
 def save_chat_history(user_question, llm_response, chat_id):
     conn, cursor = connect_db()
-    # if not chat_id:
-    #     chat_id = insert_chat()
-    #     st.session_state.chat_id = chat_id
 
     history_json = json.dumps([
         {
@@ -71,12 +83,6 @@ def save_chat_history(user_question, llm_response, chat_id):
     VALUES (?, ?, ?, ?)
     ''', (user_question, llm_response, history_json, chat_id))
     conn.commit()
-
-
-def get_all_chat():
-    _, cursor = connect_db()
-    cursor.execute('SELECT * FROM chat ORDER BY id DESC')
-    return cursor.fetchall()
 
 
 def get_chat_history_by_chat_id(chat_id):
