@@ -1,6 +1,4 @@
-import json
 import os
-import sqlite3
 import sys
 import streamlit as st
 import time
@@ -82,12 +80,11 @@ def main():
 
             # Response from LLM
             with st.chat_message("assistant", avatar="💃"):
-                # response = rag_chain.invoke({
-                #     "input": st.session_state.user_question,
-                #     "chat_history": st.session_state.chat_history_llm,
-                # })
-                # andalusian_response = adjust_to_andalusian(response["answer"])
-                andalusian_response = "Mi respuesta andaluza 🎉"
+                response = rag_chain.invoke({
+                    "input": st.session_state.user_question,
+                    "chat_history": st.session_state.chat_history_llm,
+                })
+                andalusian_response = adjust_to_andalusian(response["answer"])
 
                 # Append user question and LLM response to chat history
                 st.session_state.chat_history_llm.extend([
@@ -129,14 +126,14 @@ def handle_sidebar():
             key="recorder",
         )
         if audio_recorder:
-            # audio_bio = BytesIO(audio_recorder['bytes'])
-            # audio_bio.name = 'audio.mp3'
-            # transcription = client.audio.transcriptions.create(
-            #     model="whisper-1",
-            #     file=audio_bio,
-            #     response_format="text"
-            # )
-            st.session_state.audio2text = "transcription"
+            audio_bio = BytesIO(audio_recorder['bytes'])
+            audio_bio.name = 'audio.mp3'
+            transcription = client.audio.transcriptions.create(
+                model="whisper-1",
+                file=audio_bio,
+                response_format="text"
+            )
+            st.session_state.audio2text = transcription
 
         if st.button("Crear un nuevo chat"):
             st.session_state.chat_history_st = []
