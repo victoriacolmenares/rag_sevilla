@@ -16,6 +16,9 @@ pypdf2 = "*"
 gradio = "*"
 chromadb = "*"
 tiktoken = "*"
+pytube = "*"
+streamlit-mic-recorder = "*"
+youtube-dl = "*"
 
 [dev-packages]
 ipykernel = "*"
