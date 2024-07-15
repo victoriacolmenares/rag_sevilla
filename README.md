@@ -2,29 +2,33 @@
 
 Este proyecto implementa un asistente de inteligencia artificial (IA) diseñado para ayudar a turistas en Sevilla. Aprovechando tecnologías avanzadas de procesamiento de lenguaje natural y recuperación de información (RAG), este asistente proporciona respuestas útiles sobre actividades, información turística y opciones gastronómicas en Sevilla. Un aspecto distintivo de nuestro asistente es su capacidad para entender y generar respuestas con un toque local auténtico, gracias a un proceso de fine-tuning del modelo GPT-3.5 utilizando un dataset único basado en videos de YouTube de una hablante nativa andaluza.
 
-## Capturas de Pantalla para QA app
-
-##
-![Clima en Sevilla](images/verano_sevilla.png)
-
-##
-![2 días en Sevilla](images/que_hacer_en_sevilla.png)
 
 ## Capturas de Pantalla para Chatbot app
 
 ##
-![Clima en Sevilla](images/verano_sevilla.png)
+![Chatbot Exmample](images/chatbot1.png)
 
 ##
-![2 días en Sevilla](images/que_hacer_en_sevilla.png)
-
-
+![Chatbot Exmample](images/chatbot2.png)
 
 ## Características
 
 - **Interfaz Amigable**: Una interfaz de usuario sencilla construida con Streamlit.
 - **Fine Tunning del modelo gpt-3.5-turbo-1106**: Entrenado con un dataset único basado en videos de YouTube de una hablante nativa andaluza.
 - **Generación aumentada de recuperación (Retrieval Augmented Generation, RAG)**: Incorpora un sistema de recuperación de información basado en vectores para encontrar las respuestas más relevantes a partir de un conjunto de datos predefinido.
+
+## Funcionalidades
+- Chat de Texto y Audio: Permite a los usuarios hacer preguntas mediante entrada de texto o grabaciones de audio.
+- Historial de Chat: Guarda y carga el historial de chat para proporcionar contexto en las respuestas.
+- Actualización de Nombre del Chat: Actualiza el nombre del chat basándose en las primeras palabras de la pregunta del usuario.
+- Eliminación de Chats: Permite eliminar chats y su historial correspondiente.
+
+## Base de Datos
+La base de datos SQLite se utiliza para almacenar el historial de chat y gestionar las operaciones CRUD (Crear, Leer, Actualizar, Eliminar).
+Las funciones relacionadas se encuentran en:
+```bash
+    database/sqlite/database.py
+```
 
 
 ## Tecnologías Utilizadas
