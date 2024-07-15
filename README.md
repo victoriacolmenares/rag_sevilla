@@ -67,4 +67,4 @@ Este proyecto utiliza una colección de documentos PDF sobre Sevilla. Estos docu
 
 
 ## Uso
-Una vez que la aplicación esté ejecutándose, navega a la URL proporcionada por Streamlit. Simplemente escribe tu pregunta sobre Sevilla en el área de texto y haz clic en "Enviar" para recibir información relevante.
+Una vez que la aplicación esté ejecutándose, navega a la URL proporcionada por Streamlit. Simplemente escribe tu pregunta sobre Sevilla en el área de texto y haz clic en "Enviar" o haz click en el icono del grabador de audio y pregunta lo que quieras.
