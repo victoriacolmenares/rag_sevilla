@@ -25,7 +25,6 @@ def initdb():
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         user_question TEXT,
         llm_response TEXT,
-        history TEXT,
         chat_id INTEGER,
         FOREIGN KEY (chat_id) REFERENCES chat (id) ON DELETE CASCADE
     )
@@ -65,34 +64,14 @@ def delete_chat_by_id(chat_id):
 
 def save_chat_history(user_question, llm_response, chat_id):
     conn, cursor = connect_db()
-
-    history_json = json.dumps([
-        {
-            "role": "user",
-            "content": user_question,
-            "avatar": "👦",
-        },
-        {
-            "role": "assistant",
-            "content": llm_response,
-            "avatar": "💃",
-        }
-    ])
     cursor.execute('''
-    INSERT INTO chat_history (user_question, llm_response, history, chat_id)
-    VALUES (?, ?, ?, ?)
-    ''', (user_question, llm_response, history_json, chat_id))
+    INSERT INTO chat_history (user_question, llm_response, chat_id)
+    VALUES (?, ?, ?)
+    ''', (user_question, llm_response, chat_id))
     conn.commit()
 
 
 def get_chat_history_by_chat_id(chat_id):
     _, cursor = connect_db()
     cursor.execute('SELECT * FROM chat_history WHERE chat_id = ?', (chat_id,))
-    rows = cursor.fetchall()
-    # Deserializar el campo 'history' de JSON a lista de diccionarios
-    result = []
-    for row in rows:
-        row = list(row)
-        row[3] = json.loads(row[3])
-        result.append(row)
-    return result
+    return cursor.fetchall()
